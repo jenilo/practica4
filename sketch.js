@@ -6,19 +6,23 @@ function setup() {
 function draw() {
 	stroke('red');
 	//ecuPP(0,0,width,height);
-	dda(0,0,width,height);
+	//dda(0,0,width,height);
+	br(0,0,width,height);
 
 	stroke('blue');
 	//ecuPP(width,0,0,height);
-	dda(0,height,width,0);
+	//dda(0,height,width,0);
+	br(0,height,width,0);
 
 	stroke('yellow');
 	//ecuPP(0,height/2,width,height/2);
-	dda(0,height/2,width,height/2);
+	//dda(0,height/2,width,height/2);
+	br(0,height/2,width,height/2);
 
 	stroke('gray');
 	//ecuPP(width/2,0,width/2,height);
-	dda(width/2,0,width/2,height);
+	//dda(width/2,0,width/2,height);
+	br(width/2,0,width/2,height);
 
 }
 
@@ -107,6 +111,25 @@ function dda(x1,y1,x2,y2){
 
 }
 
-function br(){
-	
+function br(x1,y1,x2,y2){
+	let x = x1;
+	let y = y1;
+	var dx = Math.abs(x2 - x1);
+    var dy = Math.abs(y2 - y1);
+    var sx = (x1 < x2) ? 1 : -1;
+    var sy = (y1 < y2) ? 1 : -1;
+    var err = dx - dy;
+
+    while (!((x == x2) && (y == y2))) {
+    	point(x, y);
+        var e2 = err *2;
+        if (e2 > -dy) {
+            err -= dy;
+            x += sx;
+        }
+        if (e2 < dx) {
+            err += dx;
+            y += sy;
+        }
+    }
 }
